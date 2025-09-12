@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Asignacion de Turnos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+    <h1>Asignacion de Turnos</h1>
+
+    <input type="text" id="inputNombre" placeholder="Ingresa un nombre" />
+
+    <button onclick="agregarNombre()">Asignar Turno</button>
+    <button onclick="mostrarNombre()">Siguiente Turno</button>
+
+    <p id="mensaje"></p>
+
+    <h3>Lista de Nombres:</h3>
+    <ul id="listaNombres" class="vacío">
+        <li>No hay nombres agregados.</li>
+    </ul>
+
+    <script>
+        const nombres = [];
+
+        function agregarNombre() {
+            const nombreInput = document.getElementById("inputNombre");
+            const nombre = nombreInput.value.trim();
+            
+            if (nombre !== "") {
+                nombres.push(nombre);
+                nombreInput.value = "";  // Limpiamos el campo de texto
+                actualizarLista();
+            } else {
+                alert("Por favor, ingresa un nombre.");
+            }
+        }
+
+        function mostrarNombre() {
+            if (nombres.length === 0) {
+                document.getElementById("mensaje").textContent = "No hay nombres para mostrar.";
+                return;
+            }
+
+            const nombreAsignado = nombres.shift();
+            document.getElementById("mensaje").textContent = `Es turno de ${nombreAsignado}`;
+            actualizarLista();
+        }
+
+        function actualizarLista() {
+            const lista = document.getElementById("listaNombres");
+            lista.innerHTML = "";
+
+            if (nombres.length === 0) {
+                lista.innerHTML = "<li>No hay nombres agregados.</li>";
+                lista.classList.add("vacío");
+            } else {
+                lista.classList.remove("vacío");
+                for (const nombre of nombres) {
+                    const li = document.createElement("li");
+                    li.classList.add("nombre");
+                    li.textContent = nombre;
+                    lista.appendChild(li);
+                }
+            }
+        }
+    </script>
+</body>
+</html>
