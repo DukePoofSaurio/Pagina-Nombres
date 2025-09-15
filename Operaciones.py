@@ -26,7 +26,7 @@ arreglo6 = np.sum(arreglo1 + arreglo4)
 
 print("Suma de Arreglos = ", arreglo6)
 
-##print("Valor Mayor = ", np.max(arreglo1))
+###print("Valor Mayor = ", np.max(arreglo1))
 ##print("Valor Menor = ", np.min(arreglo1))
 
 ##for y in arreglo2:
